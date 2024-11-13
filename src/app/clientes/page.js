@@ -24,7 +24,7 @@ export default function PaginaInicialClientesPage() {
     }
   }
   return (
-    <Pagina titulo={"Lista de clientes"}>
+    <Pagina titulo={"Lista de Clientes"}>
       <div className="text-end mb-2">
         <Button href="/clientes/form">
           <FaPlusCircle /> Novo
@@ -35,13 +35,13 @@ export default function PaginaInicialClientesPage() {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Nome Completo</th>
-            <th>CPF</th>
-            <th>Telefone</th>
-            <th>Email</th>
-            <th>Cidade</th>
-            <th>Renda Anual</th>
-            <th>Ações</th>
+            <th>Nome Completo:</th>
+            <th>CPF:</th>
+            <th>Telefone:</th>
+            <th>Email:</th>
+            <th>Cidade:</th>
+            <th>Renda Anual:</th>
+            <th>Ações:</th>
           </tr>
         </thead>
         <tbody>

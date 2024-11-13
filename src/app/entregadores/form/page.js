@@ -29,7 +29,7 @@ export default function EntregadoresFormPage(props) {
       localStorage.setItem("entregadores", JSON.stringify(entregadores));
     }
 
-    alert("entregadores salvo com sucesso!");
+    alert("Entregador salvo com sucesso!");
     router.push("/entregadores");
   }
 
@@ -58,7 +58,7 @@ export default function EntregadoresFormPage(props) {
   });
 
   return (
-    <Pagina titulo={"Cadastro de Entregador"}>
+    <Pagina titulo={"Cadastro de Entregadores"}>
       <Formik
         initialValues={entregadoresEditado || initialValues}
         validationSchema={validationSchema}

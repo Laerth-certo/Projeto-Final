@@ -8,9 +8,8 @@ import { FaArrowLeft, FaCheck } from "react-icons/fa";
 import { v4 } from "uuid";
 import * as Yup from "yup";
 import InputMask from "react-input-mask";
-import Pagina from "@/app/components/Pagina";
 import apiLocalidades from "@/app/services/apiLocalidades";
-import styles from "@/app/ClientesFormPage.module.css"; // Importa o arquivo de estilo
+import Pagina from "@/Components/Pagina";
 
 export default function FuncionariosFormPage(props) {
   const router = useRouter();
@@ -28,7 +27,7 @@ export default function FuncionariosFormPage(props) {
       funcionarios.push(dados);
       localStorage.setItem("funcionarios", JSON.stringify(funcionarios));
     }
-    alert("funcionario criado com sucesso!");
+    alert("Funcionário Cadastrado!");
     router.push("/funcionarios");
   }
 
@@ -55,7 +54,7 @@ export default function FuncionariosFormPage(props) {
   });
 
   return (
-    <Pagina titulo="Cadastro de funcionarios">
+    <Pagina titulo="Cadastro de Funcionários">
       <Formik
         initialValues={funcionarioEditado || initialValues}
         validationSchema={validationSchema}
@@ -70,9 +69,9 @@ export default function FuncionariosFormPage(props) {
           handleSubmit,
           setFieldValue,
         }) => (
-          <Form onSubmit={handleSubmit} className={styles.form}>
+          <Form onSubmit={handleSubmit}>
             <Row className="mb-2">
-              <Form.Group as={Col} className={styles.formGroup}>
+              <Form.Group as={Col}>
                 <Form.Label>Nome:</Form.Label>
                 <Form.Control
                   name="nome"
@@ -82,7 +81,6 @@ export default function FuncionariosFormPage(props) {
                   onBlur={handleBlur}
                   isValid={touched.nome && !errors.nome}
                   isInvalid={touched.nome && errors.nome}
-                  className={styles.input}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.nome}
@@ -91,7 +89,7 @@ export default function FuncionariosFormPage(props) {
             </Row>
 
             <Row className="mb-2">
-              <Form.Group as={Col} className={styles.formGroup}>
+              <Form.Group as={Col}>
                 <Form.Label>Cargo e Funções:</Form.Label>
                 <Form.Control
                   as="textarea"
@@ -102,7 +100,6 @@ export default function FuncionariosFormPage(props) {
                   onBlur={handleBlur}
                   isValid={touched.cargo && !errors.cargo}
                   isInvalid={touched.cargo && errors.cargo}
-                  className={styles.input}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.cargo}
@@ -111,7 +108,7 @@ export default function FuncionariosFormPage(props) {
             </Row>
 
             <Row className="mb-2">
-              <Form.Group as={Col} className={styles.formGroup}>
+              <Form.Group as={Col}>
                 <Form.Label>idade:</Form.Label>
                 <Form.Control
                   name="idade"
@@ -121,20 +118,18 @@ export default function FuncionariosFormPage(props) {
                   onBlur={handleBlur}
                   isValid={touched.idade && !errors.idade}
                   isInvalid={touched.idade && errors.idade}
-                  className={styles.input}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.idade}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} className={styles.formGroup}>
+              <Form.Group as={Col}>
                 <Form.Label>CPF:</Form.Label>
                 <InputMask
                   mask="999.999.999-99"
                   value={values.cpf}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={styles.input}
                 >
                   {(inputProps) => (
                     <Form.Control
@@ -150,7 +145,7 @@ export default function FuncionariosFormPage(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group as={Col} className={styles.formGroup}>
+              <Form.Group as={Col}>
                 <Form.Label>Telefone:</Form.Label>
                 <InputMask
                   mask="(99) 99999-9999"
@@ -164,7 +159,6 @@ export default function FuncionariosFormPage(props) {
                       name="telefone"
                       isValid={touched.telefone && !errors.telefone}
                       isInvalid={touched.telefone && errors.telefone}
-                      className={styles.input}
                     />
                   )}
                 </InputMask>
@@ -175,7 +169,7 @@ export default function FuncionariosFormPage(props) {
             </Row>
 
             <Row className="mb-2">
-              <Form.Group as={Col} className={styles.formGroup}>
+              <Form.Group as={Col}>
                 <Form.Label>E-mail:</Form.Label>
                 <Form.Control
                   name="email"
@@ -186,7 +180,6 @@ export default function FuncionariosFormPage(props) {
                   onBlur={handleBlur}
                   isValid={touched.email && !errors.email}
                   isInvalid={touched.email && errors.email}
-                  className={styles.input}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.email}
@@ -195,7 +188,7 @@ export default function FuncionariosFormPage(props) {
             </Row>
 
             <Row className="mb-2">
-              <Form.Group as={Col} className={styles.formGroup}>
+              <Form.Group as={Col}>
                 <Form.Label>Data do Contrato:</Form.Label>
                 <Form.Control
                   type="date"
@@ -205,14 +198,13 @@ export default function FuncionariosFormPage(props) {
                   onBlur={handleBlur}
                   isValid={touched.dataContrato && !errors.dataContrato}
                   isInvalid={touched.dataContrato && errors.dataContrato}
-                  className={styles.input}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.dataContrato}
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group as={Col} className={styles.formGroup}>
+              <Form.Group as={Col}>
                 <Form.Label>Salário:</Form.Label>
                 <InputMask
                   mask="R$ 9999,99"
@@ -226,7 +218,6 @@ export default function FuncionariosFormPage(props) {
                       name="salario"
                       isValid={touched.salario && !errors.salario}
                       isInvalid={touched.salario && errors.salario}
-                      className={styles.input}
                     />
                   )}
                 </InputMask>

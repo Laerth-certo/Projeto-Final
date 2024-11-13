@@ -14,7 +14,7 @@ export default function Pagina({ titulo, children }) {
           </Navbar.Brand>
           <Nav className="me-end">
             <Nav.Link href="/clientes" className={styles.navLink}>
-              Cliente
+              Clientes
             </Nav.Link>
             <Nav.Link href="/entregadores" className={styles.navLink}>
               Entregadores

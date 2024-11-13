@@ -19,22 +19,22 @@ export default function ProdutoFormPage(props) {
 
   // Recuperando id para edição
   const id = props.searchParams.id;
-  const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
-  const clienteEditado = clientes.find((item) => item.id == id);
+  const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
+  const produtoEditado = produtos.find((item) => item.id == id);
 
   // função para salvar os dados do form
   function salvar(dados) {
-    if (clienteEditado) {
-      Object.assign(clienteEditado, dados);
-      localStorage.setItem("clientes", JSON.stringify(clientes));
+    if (produtoEditado) {
+      Object.assign(produtoEditado, dados);
+      localStorage.setItem("produtos", JSON.stringify(produtos));
     } else {
       dados.id = v4();
-      clientes.push(dados);
-      localStorage.setItem("clientes", JSON.stringify(clientes));
+      produtos.push(dados);
+      localStorage.setItem("produtos", JSON.stringify(produtos));
     }
 
-    alert("Cliente salvo com sucesso!");
-    router.push("/clientes");
+    alert("Produto salvo com sucesso!");
+    router.push("/produtos");
   }
 
   // Valores iniciais do formulário
@@ -66,9 +66,9 @@ export default function ProdutoFormPage(props) {
   }, [entregadores]);
 
   return (
-    <Pagina titulo={"Cadastro do Produto"}>
+    <Pagina titulo={"Cadastro de Produto"}>
       <Formik
-        initialValues={clienteEditado || initialValues}
+        initialValues={produtoEditado || initialValues}
         validationSchema={validationSchema}
         onSubmit={salvar}
       >
@@ -236,7 +236,7 @@ export default function ProdutoFormPage(props) {
             </Row>
 
             <Form.Group className="text-end">
-              <Button className="me-2" href="/clientes">
+              <Button className="me-2" href="/produtos">
                 <FaArrowLeft /> Voltar
               </Button>
               <Button type="submit" variant="success">
