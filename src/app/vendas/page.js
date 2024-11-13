@@ -8,9 +8,9 @@ import { FaPen, FaPlusCircle, FaTrash } from "react-icons/fa";
 export default function PaginaInicialvendasPage() {
   const [vendas, setVendas] = useState([]);
 
-  // Faz alguma coisa quando o usuário acessa a tela
+  
   useEffect(() => {
-    // Busca a lista do localStorage, se não existir, inicia uma vazia
+    
     const clienteLocalStorage =
       JSON.parse(localStorage.getItem("vendas")) || [];
     // guarda a lista no estado faculdades
@@ -18,7 +18,7 @@ export default function PaginaInicialvendasPage() {
     console.log(clienteLocalStorage);
   }, []);
 
-  // Função para exclusão do item
+  
   function excluir(venda) {
     // Confirma com o usuário a exclusão
     if (window.confirm(`Deseja realmente excluir a venda ${venda.nome}?`)) {
@@ -40,7 +40,7 @@ export default function PaginaInicialvendasPage() {
         </Button>
       </div>
 
-      {/* Tabela com os cliente */}
+      
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -68,7 +68,7 @@ export default function PaginaInicialvendasPage() {
                 <td>{venda.localEntrega}</td>
                 <td>{venda.parcelas}</td>
                 <td className="text-center">
-                  {/* Botões das ações */}
+                 
                   <Button className="me-2" href={`/filial/form?id=${venda.id}`}>
                     <FaPen />
                   </Button>

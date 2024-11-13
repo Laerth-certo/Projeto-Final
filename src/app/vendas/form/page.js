@@ -103,7 +103,7 @@ export default function VendasFormPage(props) {
                 </Form.Group>
               </Row>
 
-              {/* Peca e Quantidade */}
+              
               <Row className="mb-2">
                 <Form.Group as={Col}>
                   <Form.Label>Produto Adquirido:</Form.Label>
@@ -154,7 +154,7 @@ export default function VendasFormPage(props) {
                 </Form.Group>
               </Row>
 
-              {/* Funcionario e Data */}
+              
               <Row className="mb-2">
                 <Form.Group as={Col}>
                   <Form.Label>Funcionário Atribuído:</Form.Label>
@@ -201,7 +201,7 @@ export default function VendasFormPage(props) {
                 </Form.Group>
               </Row>
 
-              {/* Forma de Pagamento, Desconto e parcelas */}
+             
               <Row className="mb-2">
                 <Form.Group as={Col}>
                   <Form.Label>Forma de Pagamento:</Form.Label>

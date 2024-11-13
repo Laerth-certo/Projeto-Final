@@ -13,16 +13,16 @@ import InputMask from "react-input-mask";
 export default function ProdutoFormPage(props) {
   const [entregadorFiltrado, setEntregadorFiltrado] = useState([]);
 
-  // router -> hook para navegação de telas
+ 
   const router = useRouter();
   const entregadores = JSON.parse(localStorage.getItem("entregadores")) || [];
 
-  // Recuperando id para edição
+ 
   const id = props.searchParams.id;
   const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
   const produtoEditado = produtos.find((item) => item.id == id);
 
-  // função para salvar os dados do form
+  
   function salvar(dados) {
     if (produtoEditado) {
       Object.assign(produtoEditado, dados);
@@ -37,7 +37,7 @@ export default function ProdutoFormPage(props) {
     router.push("/produtos");
   }
 
-  // Valores iniciais do formulário
+  
   const initialValues = {
     nome: "",
     categoria: "",
@@ -49,7 +49,7 @@ export default function ProdutoFormPage(props) {
     estoque: "",
   };
 
-  // Esquema de validação com Yup
+
   const validationSchema = Yup.object().shape({
     nome: Yup.string().required("Campo obrigatório"),
     categoria: Yup.string().required("Campo obrigatório"),

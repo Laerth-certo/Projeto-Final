@@ -10,15 +10,15 @@ import * as Yup from "yup";
 import InputMask from "react-input-mask";
 
 export default function EntregadoresFormPage(props) {
-  // router -> hook para navegação de telas
+  
   const router = useRouter();
 
-  // Recuperando id para edição
+  
   const id = props.searchParams.id;
   const entregadores = JSON.parse(localStorage.getItem("entregadores")) || [];
   const entregadoresEditado = entregadores.find((item) => item.id == id);
 
-  // função para salvar os dados do form
+  
   function salvar(dados) {
     if (entregadoresEditado) {
       Object.assign(entregadoresEditado, dados);
@@ -33,7 +33,7 @@ export default function EntregadoresFormPage(props) {
     router.push("/entregadores");
   }
 
-  // Valores iniciais do formulário
+  
   const initialValues = {
     nome: "",
     cpf: "",
@@ -45,7 +45,7 @@ export default function EntregadoresFormPage(props) {
     data: "",
   };
 
-  // Esquema de validação com Yup
+  
   const validationSchema = Yup.object().shape({
     nome: Yup.string().required("Campo obrigatório"),
     cpf: Yup.string().required("Campo obrigatório"),
@@ -93,7 +93,7 @@ export default function EntregadoresFormPage(props) {
               <Form.Group as={Col}>
                 <Form.Label>CPF:</Form.Label>
                 <InputMask
-                  mask="999.999.999-99" // Use values.tipoPessoa aqui
+                  mask="999.999.999-99" 
                   value={values.cpf}
                   onChange={handleChange}
                   onBlur={handleBlur}

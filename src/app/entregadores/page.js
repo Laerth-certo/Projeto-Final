@@ -8,9 +8,9 @@ import { FaPen, FaPlusCircle, FaTrash } from "react-icons/fa";
 export default function PaginaInicialentregadoresPage() {
   const [entregadores, setEntregadores] = useState([]);
 
-  // Faz alguma coisa quando o usuário acessa a tela
+
   useEffect(() => {
-    // Busca a lista do localStorage, se não existir, inicia uma vazia
+    
     const entregadoresLocalStorage =
       JSON.parse(localStorage.getItem("entregadores")) || [];
     // guarda a lista no estado faculdades
@@ -18,7 +18,7 @@ export default function PaginaInicialentregadoresPage() {
     console.log(entregadoresLocalStorage);
   }, []);
 
-  // Função para exclusão do item
+  
   function excluir(entregador) {
     // Confirma com o usuário a exclusão
     if (
@@ -26,7 +26,7 @@ export default function PaginaInicialentregadoresPage() {
         `Deseja realmente excluir o entregador ${entregador.nome}?`
       )
     ) {
-      // filtra a lista antiga removando o entregador recebido
+      
       const novaLista = entregadores.filter(
         (item) => item.id !== entregador.id
       );
@@ -46,7 +46,7 @@ export default function PaginaInicialentregadoresPage() {
         </Button>
       </div>
 
-      {/* Tabela com os entregadores */}
+      
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -73,7 +73,7 @@ export default function PaginaInicialentregadoresPage() {
                 <td>{entregador.disponibilidade}</td>
                 <td>{entregador.data}</td>
                 <td className="text-center">
-                  {/* Botões das ações */}
+                 
                   <Button
                     className="me-2"
                     href={`/entregadores/form?id=${entregador.id}`}

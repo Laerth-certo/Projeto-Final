@@ -6,7 +6,7 @@ import styles from "../app/Pagina.module.css";
 export default function Pagina({ titulo, children }) {
   return (
     <>
-      {/* Barra de Navegação */}
+      
       <Navbar className={styles.navbar}>
         <Container>
           <Navbar.Brand href="/" className={styles.brand}>
@@ -32,12 +32,12 @@ export default function Pagina({ titulo, children }) {
         </Container>
       </Navbar>
 
-      {/* Barra de Titulo */}
+      
       <div className={styles.titleBar}>
         <h1 className={styles.pageTitle}>{titulo}</h1>
       </div>
 
-      {/* Conteudo da Página */}
+      
       <Container className={`${styles.containerContent} mt-2`}>
         {children}
       </Container>
