@@ -1,37 +1,46 @@
 "use client";
 
 import { Container, Nav, Navbar } from "react-bootstrap";
+import styles from "../app/Pagina.module.css";
 
 export default function Pagina({ titulo, children }) {
   return (
     <>
       {/* Barra de Navegação */}
-      <Navbar style={{ backgroundColor: "rgba(185, 128, 29, 0.7)" }}>
+      <Navbar className={styles.navbar}>
         <Container>
-          <Navbar.Brand href="/">Home</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="/cliente">Cliente</Nav.Link>
-            <Nav.Link href="/entregador">Entregador</Nav.Link>
-            <Nav.Link href="/filial">Filiais</Nav.Link>
-            <Nav.Link href="/funcionario">Funcionários</Nav.Link>
-            <Nav.Link href="/produto">Produtos</Nav.Link>
+          <Navbar.Brand href="/" className={styles.brand}>
+            Home
+          </Navbar.Brand>
+          <Nav className="me-end">
+            <Nav.Link href="/clientes" className={styles.navLink}>
+              Cliente
+            </Nav.Link>
+            <Nav.Link href="/entregadores" className={styles.navLink}>
+              Entregadores
+            </Nav.Link>
+            <Nav.Link href="/vendas" className={styles.navLink}>
+              Vendas
+            </Nav.Link>
+            <Nav.Link href="/funcionarios" className={styles.navLink}>
+              Funcionários
+            </Nav.Link>
+            <Nav.Link href="/produtos" className={styles.navLink}>
+              Produtos
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
 
       {/* Barra de Titulo */}
-      <div
-        style={{
-          backgroundColor: "rgba(185, 128,29,0.85)",
-          textAlign: "center",
-          padding: "4px",
-        }}
-      >
-        <h1>{titulo}</h1>
+      <div className={styles.titleBar}>
+        <h1 className={styles.pageTitle}>{titulo}</h1>
       </div>
 
       {/* Conteudo da Página */}
-      <Container className="mt-2">{children}</Container>
+      <Container className={`${styles.containerContent} mt-2`}>
+        {children}
+      </Container>
     </>
   );
 }

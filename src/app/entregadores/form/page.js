@@ -7,40 +7,41 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { FaArrowLeft, FaCheck } from "react-icons/fa";
 import { v4 } from "uuid";
 import * as Yup from "yup";
+import InputMask from "react-input-mask";
 
-export default function ClienteFormPage(props) {
+export default function EntregadoresFormPage(props) {
   // router -> hook para navegação de telas
   const router = useRouter();
 
   // Recuperando id para edição
   const id = props.searchParams.id;
-  const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
-  const clienteEditado = clientes.find((item) => item.id == id);
+  const entregadores = JSON.parse(localStorage.getItem("entregadores")) || [];
+  const entregadoresEditado = entregadores.find((item) => item.id == id);
 
   // função para salvar os dados do form
   function salvar(dados) {
-    if (clienteEditado) {
-      Object.assign(clienteEditado, dados);
-      localStorage.setItem("clientes", JSON.stringify(clientes));
+    if (entregadoresEditado) {
+      Object.assign(entregadoresEditado, dados);
+      localStorage.setItem("entregadores", JSON.stringify(entregadores));
     } else {
       dados.id = v4();
-      clientes.push(dados);
-      localStorage.setItem("clientes", JSON.stringify(clientes));
+      entregadores.push(dados);
+      localStorage.setItem("entregadores", JSON.stringify(entregadores));
     }
 
-    alert("Cliente salvo com sucesso!");
-    router.push("/clientes");
+    alert("entregadores salvo com sucesso!");
+    router.push("/entregadores");
   }
 
   // Valores iniciais do formulário
   const initialValues = {
     nome: "",
     cpf: "",
-    email: "",
+    veiculo: "",
     telefone: "",
-    endereco: "",
-    pais: "",
-    estado: "",
+    placa: "",
+    regiao: "",
+    disponibilidade: "",
     data: "",
   };
 
@@ -48,18 +49,18 @@ export default function ClienteFormPage(props) {
   const validationSchema = Yup.object().shape({
     nome: Yup.string().required("Campo obrigatório"),
     cpf: Yup.string().required("Campo obrigatório"),
-    email: Yup.string().email("Email inválido").required("Campo obrigatório"),
+    veiculo: Yup.string().required("veiculo inválido"),
     telefone: Yup.string().required("Campo obrigatório"),
-    endereco: Yup.string().required("Campo obrigatório"),
-    pais: Yup.string().required("Campo obrigatório"),
-    estado: Yup.string().required("Campo obrigatório"),
+    placa: Yup.string().required("Campo obrigatório"),
+    regiao: Yup.string().required("Campo obrigatório"),
+    disponibilidade: Yup.string().required("Campo obrigatório"),
     data: Yup.date().required("Campo obrigatório"),
   });
 
   return (
-    <Pagina titulo={"Cadastro de Filial"}>
+    <Pagina titulo={"Cadastro de Entregador"}>
       <Formik
-        initialValues={clienteEditado || initialValues}
+        initialValues={entregadoresEditado || initialValues}
         validationSchema={validationSchema}
         onSubmit={salvar}
       >
@@ -91,15 +92,21 @@ export default function ClienteFormPage(props) {
 
               <Form.Group as={Col}>
                 <Form.Label>CPF:</Form.Label>
-                <Form.Control
-                  name="cpf"
-                  type="text"
+                <InputMask
+                  mask="999.999.999-99" // Use values.tipoPessoa aqui
                   value={values.cpf}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.cpf && !errors.cpf}
-                  isInvalid={touched.cpf && errors.cpf}
-                />
+                >
+                  {(inputProps) => (
+                    <Form.Control
+                      {...inputProps}
+                      name="cpf"
+                      isValid={touched.cpf && !errors.cpf}
+                      isInvalid={touched.cpf && errors.cpf}
+                    />
+                  )}
+                </InputMask>
                 <Form.Control.Feedback type="invalid">
                   {errors.cpf}
                 </Form.Control.Feedback>
@@ -108,32 +115,38 @@ export default function ClienteFormPage(props) {
 
             <Row className="mb-2">
               <Form.Group as={Col}>
-                <Form.Label>Telefone:</Form.Label>
+                <Form.Label>Veículo:</Form.Label>
                 <Form.Control
-                  name="email"
-                  type="email"
-                  value={values.email}
+                  name="veiculo"
+                  type="text"
+                  value={values.veiculo}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.email && !errors.email}
-                  isInvalid={touched.email && errors.email}
+                  isValid={touched.veiculo && !errors.veiculo}
+                  isInvalid={touched.veiculo && errors.veiculo}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.email}
+                  {errors.veiculo}
                 </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Veículo:</Form.Label>
-                <Form.Control
-                  name="telefone"
-                  type="text"
+                <Form.Label>Telefone:</Form.Label>
+                <InputMask
+                  mask="(99) 99999-9999"
                   value={values.telefone}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.telefone && !errors.telefone}
-                  isInvalid={touched.telefone && errors.telefone}
-                />
+                >
+                  {(inputProps) => (
+                    <Form.Control
+                      {...inputProps}
+                      name="telefone"
+                      isValid={touched.telefone && !errors.telefone}
+                      isInvalid={touched.telefone && errors.telefone}
+                    />
+                  )}
+                </InputMask>
                 <Form.Control.Feedback type="invalid">
                   {errors.telefone}
                 </Form.Control.Feedback>
@@ -144,21 +157,21 @@ export default function ClienteFormPage(props) {
               <Form.Group as={Col}>
                 <Form.Label>Placa do Veículo:</Form.Label>
                 <Form.Control
-                  name="endereco"
+                  name="placa"
                   type="text"
-                  value={values.endereco}
+                  value={values.placa}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.endereco && !errors.endereco}
-                  isInvalid={touched.endereco && errors.endereco}
+                  isValid={touched.placa && !errors.placa}
+                  isInvalid={touched.placa && errors.placa}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.endereco}
+                  {errors.placa}
                 </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Data de Admissão:</Form.Label>
+                <Form.Label>Data do Cadastro</Form.Label>
                 <Form.Control
                   name="data"
                   type="date"
@@ -169,7 +182,7 @@ export default function ClienteFormPage(props) {
                   isInvalid={touched.data && errors.data}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.pais}
+                  {errors.data}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
@@ -178,38 +191,38 @@ export default function ClienteFormPage(props) {
               <Form.Group as={Col}>
                 <Form.Label>Região de Entrega:</Form.Label>
                 <Form.Control
-                  name="estado"
+                  name="regiao"
                   type="text"
-                  value={values.estado}
+                  value={values.regiao}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.estado && !errors.estado}
-                  isInvalid={touched.estado && errors.estado}
+                  isValid={touched.regiao && !errors.regiao}
+                  isInvalid={touched.regiao && errors.regiao}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.estado}
+                  {errors.regiao}
                 </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group as={Col}>
                 <Form.Label>Disponibilidade:</Form.Label>
                 <Form.Control
-                  name="nome"
+                  name="disponibilidade"
                   type="text"
-                  value={values.nome}
+                  value={values.disponibilidade}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.nome && !errors.nome}
-                  isInvalid={touched.nome && errors.nome}
+                  isValid={touched.disponibilidade && !errors.disponibilidade}
+                  isInvalid={touched.disponibilidade && errors.disponibilidade}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.data}
+                  {errors.disponibilidade}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
 
             <Form.Group className="text-end">
-              <Button className="me-2" href="/clientes">
+              <Button className="me-2" href="/entregadores">
                 <FaArrowLeft /> Voltar
               </Button>
               <Button type="submit" variant="success">
